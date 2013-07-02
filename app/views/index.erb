@@ -1,0 +1,13 @@
+<br><br>
+<div id="header">All Notes</div>
+<% if @messages %>
+	<div><%= @messages %></div> 
+<% end %>
+
+<ul>
+  <% @note.each do |note| %>
+    <li>ID# <%= note.id %>. <%= note.title %>: <%= note.content %></li>
+  <% end %>
+</ul>
+
+<a href="/notes/new"><h3>Create New Note</h3></a>

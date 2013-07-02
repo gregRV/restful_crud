@@ -1,0 +1,18 @@
+<h1>Notes & Notes & Notes</h1>
+<h6>(spaghetti spaghetti)</h6>
+
+<form action="/notes" method="post">
+	<ul>
+  	<% @note.errors.each do |attr, message| %>
+  		<li><%= attr.upcase %> <%= message.upcase %></li>
+  	<% end %>
+	</ul>
+
+  <label name="title">Title: </label>
+  <input type="text" name="note[title]" value="<%= @note.title %>">
+  <br><br>
+  <label name="content">Content: </label>
+  <input type="text" name="note[content]" value="<%= @note.content %>">
+  <br><br>
+  <input type="submit" value="Got it.">
+</form>
