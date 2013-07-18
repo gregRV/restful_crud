@@ -1,14 +1,14 @@
 <h1>Edit Note</h1>
 
-<form action="/notes/<%= @note.id %>" method="post">
-	<!-- THIS IS FROM THE BLOG, MAY TAKE OUT -->
-	<input type="hidden" name="_method" value="put">
+<ul>
+  <% @note.errors.each do |attr, message| %>
+    <div class="error"><li><%= attr.upcase %> <%= message.upcase %></li></div>
+  <% end %>
+</ul>
 
-	<ul>
-  	<% @note.errors.each do |attr, message| %>
-  		<div class="error"><li><%= attr.upcase %> <%= message.upcase %></li></div>
-  	<% end %>
-	</ul>
+<form action="/notes/<%= @note.id %>" method="post">
+	<!-- NEED THIS TO DO PUT/DELETE -->
+	<input type="hidden" name="_method" value="put">
 
   <label name="title">Title: </label>
   <input type="text" name="note[title]" value="<%= @note.title %>">

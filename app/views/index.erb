@@ -1,13 +1,11 @@
-<br><br>
-<div id="header">All Notes</div>
-<% if @messages %>
-	<div><%= @messages %></div> 
-<% end %>
+<a href="/notes/new"><h1>Create New Note</h1></a>
+<br>
+<h2>All Notes</h2>
 
-<ul>
-  <% @note.each do |note| %>
-    <li>ID# <%= note.id %>. <%= note.title %>: <%= note.content %></li>
-  <% end %>
-</ul>
-
-<a href="/notes/new"><h3>Create New Note</h3></a>
+<div class="container">
+	<ul>
+	  <% @note.each do |note| %>
+	    <li><a href="/notes/<%= note.id %>"><%= note.title %>: <%= note.content %></a></li>
+	  <% end %>
+	</ul>
+</div>

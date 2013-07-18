@@ -5,14 +5,14 @@ end
 
 # Get the New Note form
 get '/notes/new' do
-	@note = Note.new
+	@note = Note.new  #for error check 
 	erb :"notes/create"
 end
 
 # If successful, redirects to Note's own page.
 # Else, goes back to form where user can modify/resubmit.
 post '/notes' do
-	@note = Note.create(params[:note])
+	@note = Note.new(params[:note])
 	if @note.save
 		redirect "notes/#{@note.id}"
 	else
@@ -32,7 +32,10 @@ get '/notes/:id/edit' do |id|
 	erb :"notes/edit"
 end
 
-# For Edit Note
+# For Edit Note: .update_attributes
+# Updates all the attributes from the passed-in Hash 
+# and saves the record. If the object is invalid, 
+# the saving will fail and false will be returned.
 put "/notes/:id" do |id|
 	@note = Note.find(id)
 	if @note.update_attributes(params[:note])
@@ -42,10 +45,9 @@ put "/notes/:id" do |id|
 	end
 end
 
-# 'delete' doesn't work but 'get' does?
-delete "/notes/:id/delete" do |id|
-	Note.find(id.to_i).destroy
-	#@messages = "Note deleted"
+delete "/notes/:id" do |id|
+	Note.find(id).destroy
+	redirect '/'
 end
 
 
